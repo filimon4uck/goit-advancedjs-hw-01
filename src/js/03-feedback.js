@@ -9,10 +9,14 @@ formEl.message.value = formData.message || '';
 
 formEl.addEventListener('submit', evt => {
   evt.preventDefault();
-  localStorage.clear();
-  console.log(formData);
-  evt.currentTarget.reset();
-  formData = {};
+  if (evt.currentTarget.email.value && evt.currentTarget.message.value) {
+    localStorage.clear();
+    console.log(formData);
+    evt.currentTarget.reset();
+    formData = {};
+  } else {
+    alert('Please fill all fields');
+  }
 });
 
 formEl.addEventListener('input', throttle(inputHandler, 500));
