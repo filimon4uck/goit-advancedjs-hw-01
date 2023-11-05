@@ -2,7 +2,7 @@ import { throttle } from 'lodash';
 const formEl = document.querySelector('.feedback-form');
 const KEY_FORM_VALUES = 'feedback-form-state';
 
-let formData = JSON.parse(localStorage.getItem(KEY_FORM_VALUES)) ?? {};
+const formData = JSON.parse(localStorage.getItem(KEY_FORM_VALUES)) ?? {};
 
 formEl.email.value = formData.email || '';
 formEl.message.value = formData.message || '';
@@ -16,7 +16,6 @@ formEl.addEventListener('submit', evt => {
   localStorage.clear();
   console.log(formData);
   evt.currentTarget.reset();
-  formData = {};
 });
 
 formEl.addEventListener('input', throttle(inputHandler, 500));
